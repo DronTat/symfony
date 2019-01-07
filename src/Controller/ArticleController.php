@@ -6,20 +6,17 @@
  * Time: 13:04
  */
 
+declare(strict_types = 1);
+
 namespace App\Controller;
 
 
 use App\Entity\Users;
-use App\Repository\UsersRepository;
-use Doctrine\ORM\EntityManager;
 use Faker\Factory;
-use PhpParser\JsonDecoder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ArticleController extends Controller
@@ -62,9 +59,10 @@ class ArticleController extends Controller
      */
     public function test()
     {
+        $count = 12;
         $users = $this->getUsersData();
         if (empty($users)){
-            $this->setUsersData(12);
+            $this->setUsersData($count);
             $users = $this->getUsersData();
         }
         return var_dump($users);
